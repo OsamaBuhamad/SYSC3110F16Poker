@@ -113,14 +113,33 @@ public class Hand {
 		}
 			return true;
 		}
-	public boolean isStraightFlush(){
-//		boolean sf=false;
-//		boolean sf1=this.isFlush();
-//		boolean sf2=this.isStraight();
-//		if(this.isFlush()==true&&this.isStraight()==true)
-//			sf=true;
-//		
+	public boolean isStraightFlush(){		
 		return this.isFlush()==true && this.isStraight()==true;
+	}
+	
+	public boolean isPair(){
+
+		return this.kindTest(2);
+	}
+	
+	public boolean is3ofAKind(){
+
+		return this.kindTest(3);
+	}
+	
+	public boolean is4ofAKind(){
+
+		return this.kindTest(4);
+	}
+	private boolean kindTest(int value){
+		if(Collections.frequency(ranks, ranks.get(0)) >= value || Collections.frequency(ranks, ranks.get(1)) >=value || Collections.frequency(ranks, ranks.get(2)) >=value || Collections.frequency(ranks, ranks.get(3)) >=value || Collections.frequency(ranks, ranks.get(4)) >=value){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isHighCard(){
+		return !(this.isPair() || this.is3ofAKind() || this.is4ofAKind() || this.isStraight() || this.isFlush() || this.isStraightFlush());
 	}
 
 }
